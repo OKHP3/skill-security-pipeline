@@ -26,6 +26,8 @@ a package is safe. This adapter applies no author, quality, or maturity gate.
 from __future__ import annotations
 
 import math
+import ntpath
+import posixpath
 import re
 
 
@@ -66,11 +68,22 @@ def _count(value: object) -> bool:
     return type(value) is int and 0 <= value <= 1_000_000_000
 
 
+def _path_key(value: object) -> tuple[str, str] | None:
+    """Compare absolute source identities without accessing report-owned paths."""
+    if not isinstance(value, str) or not value or any(ord(char) < 32 for char in value):
+        return None
+    if ntpath.splitdrive(value)[0]:
+        return ("windows", ntpath.normcase(ntpath.normpath(value))) if ntpath.isabs(value) else None
+    return ("posix", posixpath.normpath(value)) if value.startswith("/") else None
+
+
 def normalize(report: dict, *, package: str, engine: dict) -> dict:
     """Reduce released CLI JSON to safe findings and scan-coverage evidence.
 
     `engine` is trusted configuration; its optional `version` must match the
-    reported build (a leading v is permitted). No supplied engine/report text
+    reported build (a leading v is permitted). Optional expected_package_dir
+    binds the serialized skill.source to the caller's staged absolute directory.
+    No supplied engine/report text
     is copied into output, except syntactically bounded public rule identifiers.
     `package` is the caller's catalog identity, never the report's source path.
     Valid findings survive an incomplete scan, but incomplete always wins status.
@@ -81,7 +94,7 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
     coverage.update(complete=False, execution_successful=False,
                     coverage_percent=None, component_count=None,
                     analyzer_count=None, exclusion_count=None,
-                    limitation_count=None)
+                    limitation_count=None, package_path_bound=False)
 
     def result() -> dict:
         return {
@@ -95,6 +108,19 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
     if not isinstance(report, dict):
         errors.add("invalid_report")
         return result()
+
+    if "expected_package_dir" in engine:
+        expected_path = _path_key(engine["expected_package_dir"])
+        skill = report.get("skill")
+        actual_path = _path_key(skill.get("source")) if isinstance(skill, dict) else None
+        if expected_path is None:
+            errors.add("invalid_expected_package_path")
+        elif actual_path is None:
+            errors.add("invalid_package_path")
+        elif actual_path != expected_path:
+            errors.add("package_path_mismatch")
+        else:
+            coverage["package_path_bound"] = True
 
     issues = report.get("issues")
     if not isinstance(issues, list):

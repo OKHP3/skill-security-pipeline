@@ -221,6 +221,33 @@ class NvidiaAdapterTests(unittest.TestCase):
         self.normalized(report)
         self.assertEqual(report, original)
 
+    def test_runner_package_binding_uses_public_skill_source_with_lexical_normalization(self):
+        for source, expected in (("/staging/package/", "/staging/package"),
+                                 ("C:\\Stage\\Package", "c:/stage/package/")):
+            with self.subTest(source=source):
+                report = successful_report()
+                report["skill"]["source"] = source
+                output = normalize(report, package=PACKAGE, engine={**ENGINE, "expected_package_dir": expected})
+                self.assertEqual(output["status"], "no-findings")
+                self.assertTrue(output["coverage"]["package_path_bound"])
+                self.assertNotIn(source, json.dumps(output))
+
+    def test_mismatched_or_missing_package_identity_is_never_attributed_as_clean(self):
+        for skill in ({"source": "/other/package"}, {"source": "relative/package"}, {}, None):
+            with self.subTest(skill=skill):
+                report = successful_report()
+                report["skill"] = skill
+                output = normalize(report, package=PACKAGE, engine={**ENGINE, "expected_package_dir": "/staging/package"})
+                self.assertEqual(output["status"], "incomplete")
+                self.assertFalse(output["coverage"]["package_path_bound"])
+                self.assertTrue({"package_path_mismatch", "invalid_package_path"}.intersection(output["errors"]))
+                self.assertNotIn("/other/package", json.dumps(output))
+
+    def test_invalid_expected_package_path_fails_closed(self):
+        output = normalize(successful_report(), package=PACKAGE,
+                           engine={**ENGINE, "expected_package_dir": "relative/package"})
+        self.assertIn("invalid_expected_package_path", output["errors"])
+
     def test_non_object_report_is_incomplete(self):
         self.assertEqual(self.normalized(None)["errors"], ["invalid_report"])
 
