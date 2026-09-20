@@ -60,8 +60,12 @@ def scan_package(root: Path, head: str, package: str, executables: dict, engines
 
 def run(root: Path, head: str, plan: dict, pins: dict, executables: dict, workers: int = 4) -> dict:
     start = dt.datetime.now(dt.timezone.utc).isoformat()
+    results = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
-        results = list(pool.map(lambda package: scan_package(root, head, package, executables, pins["engines"]), plan["packages"]))
+        for result in pool.map(lambda package: scan_package(root, head, package, executables, pins["engines"]), plan["packages"]):
+            results.append(result)
+            if len(results) % 25 == 0 or len(results) == len(plan["packages"]):
+                print(f"Security analysis returned for {len(results)}/{len(plan['packages'])} packages.", flush=True)
     engines = [engine for package in results for engine in package["engines"]]
     complete = len(results) == len(plan["packages"]) and len(engines) == 2 * len(results) and all(e["status"] != "incomplete" for e in engines)
     blocking = sum(f["severity"] in {"critical", "high"} for e in engines for f in e["findings"])

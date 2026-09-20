@@ -81,6 +81,7 @@ class NvidiaAdapterTests(unittest.TestCase):
         self.assertEqual(output["errors"], [])
         self.assertTrue(output["coverage"]["complete"])
         self.assertEqual(output["coverage"]["scanned_components"], 1)
+        self.assertEqual(output["coverage"]["exclusion_count"], 0)
         self.assertEqual(output["engine"], "nvidia")
         self.assertEqual(output["package"], PACKAGE)
 
@@ -175,12 +176,30 @@ class NvidiaAdapterTests(unittest.TestCase):
                 report["analysis_completeness"]["analyzer_statuses"][0][field] = value
                 self.assertEqual(self.normalized(report)["status"], "incomplete")
 
-    def test_scope_exclusions_are_counted_without_promoting_them_to_findings(self):
+    def test_declared_directory_exclusion_is_incomplete_despite_vendor_complete(self):
         report = successful_report()
         report["analysis_completeness"]["scope_exclusions"] = [{
-            "outcome": "out_of_scope", "path": "SECRET-MARKER", "message": "SECRET-MARKER"}]
+            "outcome": "out_of_scope", "path": "node_modules/SECRET-MARKER/",
+            "phase": "discovery", "reason_code": "excluded_directory", "fatal": False,
+            "message": "SECRET-MARKER"}]
         output = self.normalized(report)
-        self.assertEqual(output["status"], "no-findings")
+        self.assertEqual(output["status"], "incomplete")
+        self.assertEqual(output["errors"], ["excluded_input_scope"])
+        self.assertEqual(output["findings"], [])
+        self.assertFalse(output["coverage"]["complete"])
+        self.assertTrue(output["coverage"]["execution_successful"])
+        self.assertEqual(output["coverage"]["exclusion_count"], 1)
+        self.assertNotIn("SECRET-MARKER", json.dumps(output))
+
+    def test_any_declared_exclusion_retains_findings_and_reports_coverage_gap(self):
+        report = successful_report()
+        report["issues"] = [finding()]
+        report["analysis_completeness"]["scope_exclusions"] = [{
+            "reason_code": "future_vendor_scope_rule", "message": "SECRET-MARKER"}]
+        output = self.normalized(report)
+        self.assertEqual(output["status"], "incomplete")
+        self.assertEqual(output["errors"], ["excluded_input_scope"])
+        self.assertEqual(output["findings"], [{"rule_id": "AST1", "severity": "high"}])
         self.assertEqual(output["coverage"]["exclusion_count"], 1)
         self.assertNotIn("SECRET-MARKER", json.dumps(output))
 

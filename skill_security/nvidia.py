@@ -21,6 +21,13 @@ missing/malformed JSON, and unexpected process exits distinct from findings.
 Scan one staged package per invocation; --recursive only discovers immediate
 children and caps scans at 32. Never use the vendor's risk score as a claim that
 a package is safe. This adapter applies no author, quality, or maturity gate.
+
+The caller stages committed package files only. Any declared scope exclusion
+therefore leaves a security coverage gap and is incomplete here, even when the
+vendor calls its narrower scan complete (for example, excluded node_modules
+trees). Retain exclusion counts without publishing paths or treating exclusions
+as findings. Vendor component counts are not physical input-file counts:
+out-of-scope artifacts can be omitted and nested archive members can be added.
 """
 
 from __future__ import annotations
@@ -222,8 +229,8 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
             errors.add("report_limit_exceeded")
         if count_field:
             coverage[count_field] = len(rows)
-        if rows and field != "scope_exclusions":
-            errors.add("analysis_incomplete")
+        if rows:
+            errors.add("excluded_input_scope" if field == "scope_exclusions" else "analysis_incomplete")
         if field == "ledger_exceptions" and any(row.get("fatal") is True for row in rows[:_MAX_RECORDS]):
             errors.add("execution_failed")
 
