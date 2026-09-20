@@ -118,6 +118,8 @@ function Integration({ evidence }: { evidence: Evidence | null }) {
 export default function App() {
   const { data: evidence, state } = useEvidence();
   useEffect(() => {
+    // The evidence panel changes height when its initial fetch settles.
+    if (state === 'loading') return;
     // Fragment targets do not exist until React mounts on a direct page load.
     const restoreFragment = () => {
       let id: string;
@@ -135,7 +137,7 @@ export default function App() {
       window.cancelAnimationFrame(frame);
       window.removeEventListener('hashchange', restoreFragment);
     };
-  }, []);
+  }, [state]);
   return <>
     <a className="skip-link" href="#main-content">Skip to content</a>
     <Header />
