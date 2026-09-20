@@ -5,6 +5,10 @@ pins; release tags identify reviewed milestones and are not moved.
 
 ## Unreleased
 
+- Update the site to React 19.3, Vite 8, and TypeScript 7 together, with matching
+  React types and plugin. Update the pinned uv, artifact, and Pages actions;
+  scanner input/output and evidence verdict contracts remain unchanged.
+
 - Retain bounded, allowlisted NVIDIA analyzer counters and ledger reason counts,
   distinguishing complete file coverage from incomplete analysis without exposing
   scanner messages or changing verdicts.
