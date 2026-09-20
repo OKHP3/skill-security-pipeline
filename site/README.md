@@ -48,6 +48,14 @@ provides a manual copy path.
 
 ## Design provenance
 
+The compact Skill basics & sources section provides a brief definition and
+links to external authoring guidance, provider/project catalogs, and a separately
+labeled community collection. Keep skill-authoring advice at those sources
+instead of duplicating tutorials here. Preserve clear legacy labels when a
+provider replaces a catalog; OpenAI's deprecated skills catalog links alongside
+its current plugins repository. Shield's own integration instructions remain
+specific to the security action and its supported repository layouts.
+
 The styling adapts the MIT-licensed `OKHP3/skillz` Forge design: Alfa Slab One
 headlines, DM Sans body, JetBrains Mono labels, OverKill Hill palette, copper
 rules, compact square corners, navigation, and footer patterns. The default
