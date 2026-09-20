@@ -117,6 +117,25 @@ function Integration({ evidence }: { evidence: Evidence | null }) {
 
 export default function App() {
   const { data: evidence, state } = useEvidence();
+  useEffect(() => {
+    // Fragment targets do not exist until React mounts on a direct page load.
+    const restoreFragment = () => {
+      let id: string;
+      try { id = decodeURIComponent(window.location.hash.slice(1)); } catch { return; }
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      target.focus({ preventScroll: true });
+      // Native scrolling retains the CSS sticky-header offset and motion preference.
+      target.scrollIntoView({ block: 'start', behavior: 'auto' });
+    };
+    const frame = window.requestAnimationFrame(restoreFragment);
+    window.addEventListener('hashchange', restoreFragment);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('hashchange', restoreFragment);
+    };
+  }, []);
   return <>
     <a className="skip-link" href="#main-content">Skip to content</a>
     <Header />

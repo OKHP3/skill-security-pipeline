@@ -14,7 +14,7 @@ const catalogs = [
 ];
 
 export default function SkillSources() {
-  return <section id="skill-guidance" className="section sources-section" aria-labelledby="sources-heading">
+  return <section id="skill-guidance" className="section sources-section" aria-labelledby="sources-heading" tabIndex={-1}>
     <div className="section-heading">
       <div><p className="eyebrow">SKILL BASICS &amp; SOURCES</p><h2 id="sources-heading">Start at the source.</h2></div>
       <p>An Agent Skill packages instructions and supporting files for a task. For authoring guidance and examples, go to the sources below.</p>
