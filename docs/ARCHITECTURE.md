@@ -97,6 +97,11 @@ can be disabled; required static analyzers and coverage evidence must remain
 present. Declared exclusions, unsupported report contracts, failed or partial
 analysis, and operational gaps remain incomplete evidence.
 
+NVIDIA evidence includes fixed incomplete-reason codes, ledger exception/fatal
+counts, allowlisted ledger reasons, and up to 64 analyzer summaries with validated
+counters. Unknown vendor names, statuses, and reasons become `unknown`; paths,
+messages and snippets are never copied. Diagnostic fields do not relax any gate.
+
 The supervisor uses a restricted environment, temporary homes, a 180-second
 per-engine process timeout, a 16 MiB report limit, and at most four concurrent
 package workers by default. It does not execute skill code. Installed scanner

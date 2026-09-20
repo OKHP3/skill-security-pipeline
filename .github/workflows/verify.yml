@@ -51,6 +51,17 @@ jobs:
         env:
           STATE_PATH: ${{ runner.temp }}/security-state
         run: python tests/live_smoke.py --state "$STATE_PATH"
+      - name: Check out immutable public diagnostic inputs
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: OKHP3/skillz
+          ref: 6d12576032018a6cbe275751e62ce039a765b9d7
+          path: diagnostic-input
+          persist-credentials: false
+      - name: Record representative inventory diagnostics without claiming a pass
+        env:
+          STATE_PATH: ${{ runner.temp }}/security-state
+        run: python tests/live_inventory_probe.py --state "$STATE_PATH" --repository diagnostic-input
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
@@ -58,4 +69,5 @@ jobs:
           path: |
             ${{ runner.temp }}/security-state/pins.json
             ${{ runner.temp }}/security-state/smoke-report.json
+            ${{ runner.temp }}/security-state/inventory-probe.json
           retention-days: 30

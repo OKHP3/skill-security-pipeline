@@ -39,6 +39,63 @@ import re
 
 
 _MAX_RECORDS = 10_000
+# Public LedgerReason enum at the verified vendor revision above. Never publish
+# arbitrary reason strings, analyzer names, messages, paths, or source snippets.
+_LEDGER_REASONS = {
+    "excluded_directory",
+    "hidden_file",
+    "file_disappeared",
+    "not_regular_file",
+    "stat_error",
+    "read_error",
+    "missing_file_cache",
+    "size_limit",
+    "binary_content",
+    "eval_dataset",
+    "syntax_error",
+    "llm_batch_failed",
+    "llm_structured_response_invalid",
+    "llm_connection_retries_exhausted",
+    "analyzer_runtime_error",
+    "unaccounted_work",
+    "finding_accounting_error",
+    "disabled_by_configuration",
+    "missing_credentials",
+    "rules_unavailable",
+    "manifest_absent",
+    "no_applicable_files",
+    "oms_signature",
+    "baseline_file",
+    "archive_format_mismatch",
+    "archive_malformed",
+    "archive_encrypted",
+    "archive_unsupported_compression",
+    "archive_truncated",
+    "archive_unsafe_member_path",
+    "archive_ambiguous_member_path",
+    "archive_link_member",
+    "archive_depth_limit",
+    "archive_member_limit",
+    "archive_size_limit",
+    "archive_member_size_limit",
+    "archive_compression_ratio",
+    "archive_time_limit",
+    "vcs_metadata",
+    "opaque_content",
+    "referenced_uninspected",
+    "reference_extraction_limit",
+    "reference_unresolved",
+    "manifest_parse_error",
+    "manifest_parse_limit",
+    "artifact_count_limit",
+    "traversal_depth_limit",
+    "total_bytes_limit",
+    "runtime_limit",
+    "output_limit",
+    "static_parse_limit",
+    "obfuscated_instruction_text",
+}
+_ANALYZER_STATES = {"completed", "not_applicable", "disabled", "partial", "skipped", "failed"}
 _RULE_ID = re.compile(r"[A-Za-z][A-Za-z0-9_.:-]{0,79}\Z")
 _VERSION = re.compile(r"\d+\.\d+\.\d+(?:[-+][A-Za-z0-9.-]+)?\Z")
 _SEVERITIES = {"critical", "high", "medium", "low", "info"}
@@ -97,13 +154,18 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
     """
     errors: set[str] = set()
     findings: set[tuple[str, str]] = set()
+    diagnostics: set[str] = set()
     coverage = {name: None for name in _COUNTS}
     coverage.update(complete=False, execution_successful=False,
                     coverage_percent=None, component_count=None,
                     analyzer_count=None, exclusion_count=None,
-                    limitation_count=None, package_path_bound=False)
+                    limitation_count=None, package_path_bound=False,
+                    ledger_exception_count=None, ledger_fatal_count=None,
+                    ledger_reason_counts={}, analyzer_details=[],
+                    analyzer_details_truncated=False)
 
     def result() -> dict:
+        coverage["incomplete_reasons"] = sorted(diagnostics)
         return {
             "engine": "nvidia", "package": package,
             "status": "incomplete" if errors else "findings" if findings else "no-findings",
@@ -166,6 +228,7 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
             errors.add("unexpected_scan_mode")
         if metadata.get("transitive_truncated"):
             errors.add("analysis_incomplete")
+            diagnostics.add("transitive_truncated")
 
     if report.get("execution_successful") is not True:
         errors.add("execution_failed")
@@ -194,6 +257,7 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
         errors.add("execution_failed")
     if completeness.get("is_complete") is not True or completeness.get("status") != "complete":
         errors.add("analysis_incomplete")
+        diagnostics.add("vendor_declared_incomplete")
 
     for name in _COUNTS:
         if _count(completeness.get(name)):
@@ -213,6 +277,7 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
             errors.add("invalid_coverage")
         if partial or uninspected:
             errors.add("analysis_incomplete")
+            diagnostics.add("partial_or_uninspected_files")
         if coverage["coverage_percent"] is not None and total:
             if abs(coverage["coverage_percent"] - round(full / total * 100, 1)) > 0.05:
                 errors.add("invalid_coverage")
@@ -231,6 +296,16 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
             coverage[count_field] = len(rows)
         if rows:
             errors.add("excluded_input_scope" if field == "scope_exclusions" else "analysis_incomplete")
+            diagnostics.add(field)
+        if field == "ledger_exceptions":
+            coverage["ledger_exception_count"] = len(rows)
+            coverage["ledger_fatal_count"] = sum(row.get("fatal") is True for row in rows[:_MAX_RECORDS])
+            reason_counts: dict[str, int] = {}
+            for row in rows[:_MAX_RECORDS]:
+                reason = row.get("reason_code")
+                safe_reason = reason if isinstance(reason, str) and reason in _LEDGER_REASONS else "unknown"
+                reason_counts[safe_reason] = reason_counts.get(safe_reason, 0) + 1
+            coverage["ledger_reason_counts"] = dict(sorted(reason_counts.items()))
         if field == "ledger_exceptions" and any(row.get("fatal") is True for row in rows[:_MAX_RECORDS]):
             errors.add("execution_failed")
 
@@ -239,6 +314,7 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
         errors.add("invalid_analyzers")
     else:
         coverage["analyzer_count"] = len(statuses)
+        coverage["analyzer_details_truncated"] = len(statuses) > 64
         if len(statuses) > _MAX_RECORDS:
             errors.add("report_limit_exceeded")
         seen: set[str] = set()
@@ -251,10 +327,21 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
                 errors.add("invalid_analyzers")
             seen.add(analyzer)
             status = row.get("status")
+            if len(coverage["analyzer_details"]) < 64:
+                reason = row.get("reason_code")
+                detail = {
+                    "analyzer": analyzer if analyzer in _REQUIRED_ANALYZERS | _OPTIONAL_MODEL_ANALYZERS else "unknown",
+                    "status": status if isinstance(status, str) and status in _ANALYZER_STATES else "unknown",
+                    "reason": reason if isinstance(reason, str) and reason in _LEDGER_REASONS else "unknown",
+                }
+                for counter in ("planned_work", "completed", "partial", "skipped", "failed", "unaccounted"):
+                    detail[counter] = row[counter] if _count(row.get(counter)) else None
+                coverage["analyzer_details"].append(detail)
             allowed_disabled = status == "disabled" and analyzer in _OPTIONAL_MODEL_ANALYZERS
             if (not isinstance(status, str)
                     or status not in {"completed", "not_applicable"} and not allowed_disabled):
                 errors.add("analysis_incomplete")
+                diagnostics.add("analyzer_status")
             counters = (row.get(name) for name in
                         ("planned_work", "completed", "partial", "skipped", "failed", "unaccounted"))
             if not all(_count(value) for value in counters):
@@ -265,6 +352,7 @@ def normalize(report: dict, *, package: str, engine: dict) -> dict:
                     errors.add("invalid_analyzers")
                 if any(row[name] for name in ("partial", "skipped", "failed", "unaccounted")):
                     errors.add("analysis_incomplete")
+                    diagnostics.add("analyzer_work_incomplete")
         if not _REQUIRED_ANALYZERS.issubset(seen):
             errors.add("missing_analyzers")
 

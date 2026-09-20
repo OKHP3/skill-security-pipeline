@@ -270,6 +270,40 @@ class NvidiaAdapterTests(unittest.TestCase):
     def test_non_object_report_is_incomplete(self):
         self.assertEqual(self.normalized(None)["errors"], ["invalid_report"])
 
+    def test_full_file_coverage_retains_precise_ledger_gap_without_private_text(self):
+        report = successful_report()
+        report["analysis_completeness"]["ledger_exceptions"] = [
+            {"reason_code": "reference_unresolved", "fatal": False, "path": "SECRET-MARKER"},
+            {"reason_code": "SECRET-MARKER", "message": "SECRET-MARKER", "fatal": True},
+        ]
+        output = self.normalized(report)
+        self.assertEqual(output["status"], "incomplete")
+        self.assertEqual(output["coverage"]["coverage_percent"], 100)
+        self.assertEqual(output["coverage"]["ledger_exception_count"], 2)
+        self.assertEqual(output["coverage"]["ledger_fatal_count"], 1)
+        self.assertEqual(output["coverage"]["ledger_reason_counts"], {"reference_unresolved": 1, "unknown": 1})
+        self.assertIn("ledger_exceptions", output["coverage"]["incomplete_reasons"])
+        self.assertNotIn("SECRET-MARKER", json.dumps(output))
+
+    def test_unknown_analyzer_diagnostics_are_bounded_and_redacted(self):
+        report = successful_report()
+        row = dict(report["analysis_completeness"]["analyzer_statuses"][0])
+        row.update(analyzer_id="SECRET-MARKER", status="SECRET-MARKER", reason_code="SECRET-MARKER")
+        report["analysis_completeness"]["analyzer_statuses"].extend([row] * 100)
+        output = self.normalized(report)
+        self.assertEqual(output["status"], "incomplete")
+        self.assertLessEqual(len(output["coverage"]["analyzer_details"]), 64)
+        self.assertIn("analyzer_status", output["coverage"]["incomplete_reasons"])
+        self.assertNotIn("SECRET-MARKER", json.dumps(output))
+
+    def test_incomplete_work_is_distinct_from_completed_file_counts(self):
+        report = successful_report()
+        report["analysis_completeness"]["analyzer_statuses"][0].update(completed=0, skipped=1)
+        output = self.normalized(report)
+        self.assertEqual(output["coverage"]["coverage_percent"], 100)
+        self.assertIn("analyzer_work_incomplete", output["coverage"]["incomplete_reasons"])
+        self.assertEqual(output["status"], "incomplete")
+
 
 if __name__ == "__main__":
     unittest.main()
