@@ -5,6 +5,10 @@ pins; release tags identify reviewed milestones and are not moved.
 
 ## Unreleased
 
+- Split the public Shield companion into separate Overview, Evidence, Engines,
+  Integrate, and Guidance pages, each directly addressable on GitHub Pages.
+- Bring Forge-style GitHub access and a persisted light, dark, or system-display
+  choice into Shield's sticky navigation, including a compact keyboard-safe menu.
 - Add compact skill guidance and source links, with Agent Skills best practices,
   provider and project catalogs, and a separately labeled community collection.
   Identify OpenAI's deprecated skills catalog and current plugins destination.

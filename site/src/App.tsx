@@ -6,23 +6,51 @@ import SkillSources from './SkillSources';
 
 const REPOSITORY = 'https://github.com/OKHP3/skillz-shield';
 const FORGE = 'https://okhp3.github.io/skillz/';
-const links = [['overview', 'Overview'], ['evidence', 'Evidence'], ['engines', 'Engines'], ['integrate', 'Integrate']] as const;
+const SITE_BASE = import.meta.env.BASE_URL;
+const pagePath = (page = '') => `${SITE_BASE}${page ? `${page}/` : ''}`;
+const links = [
+  ['home', 'Overview', pagePath()],
+  ['evidence', 'Evidence', pagePath('evidence')],
+  ['engines', 'Engines', pagePath('engines')],
+  ['integrate', 'Integrate', pagePath('integrate')],
+  ['guidance', 'Guidance', pagePath('guidance')],
+] as const;
+type ThemeMode = 'light' | 'dark' | 'system';
 const engineInfo = [
   { id: 'cisco', vendor: 'CISCO', name: 'Skill Scanner', repo: 'cisco-ai-defense/skill-scanner', number: '01', description: 'Examines skill instructions and supporting code for risky patterns, prompt injection, and suspicious behavior.', detail: 'Static analysis · no model credentials' },
   { id: 'nvidia', vendor: 'NVIDIA', name: 'SkillSpector', repo: 'NVIDIA/SkillSpector', number: '02', description: 'Adds an independent view of skill content, code, secrets, and dependency vulnerabilities.', detail: 'Static analysis · OSV dependency lookup' },
 ] as const;
 
-function Header() {
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState('overview');
-  const toggle = useRef<HTMLButtonElement>(null);
+function ThemeToggle() {
+  const [mode, setMode] = useState<ThemeMode>(() => {
+    try {
+      const saved = localStorage.getItem('skillz-shield-theme');
+      return saved === 'light' || saved === 'dark' || saved === 'system' ? saved : 'system';
+    } catch { return 'system'; }
+  });
+  const [systemDark, setSystemDark] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id);
-    }, { rootMargin: '-10% 0px -65% 0px' });
-    links.forEach(([id]) => { const section = document.getElementById(id); if (section) observer.observe(section); });
-    return () => observer.disconnect();
+    const query = window.matchMedia('(prefers-color-scheme: dark)');
+    const update = (event: MediaQueryListEvent) => setSystemDark(event.matches);
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
   }, []);
+  const resolved = mode === 'system' ? (systemDark ? 'dark' : 'light') : mode;
+  useEffect(() => { document.documentElement.dataset.theme = resolved; }, [resolved]);
+  function choose(next: ThemeMode) {
+    setMode(next);
+    try { localStorage.setItem('skillz-shield-theme', next); } catch { /* browser storage is optional */ }
+  }
+  return <div className="theme-toggle" role="group" aria-label="Color theme">
+    {([['light', 'Light mode', '☼'], ['system', 'System preference', '▣'], ['dark', 'Dark mode', '◐']] as const).map(([value, label, glyph]) =>
+      <button key={value} type="button" aria-label={label} title={label} aria-pressed={mode === value} onClick={() => choose(value)}>{glyph}</button>,
+    )}
+  </div>;
+}
+
+function Header({ page }: { page: string }) {
+  const [open, setOpen] = useState(false);
+  const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && open) { setOpen(false); toggle.current?.focus(); }
@@ -32,14 +60,16 @@ function Header() {
   }, [open]);
   return <header className="site-header">
     <div className="container header-inner">
-      <a className="brand" href="#overview" aria-label="Skillz Shield home" onClick={() => setOpen(false)}>
+      <a className="brand" href={pagePath()} aria-label="Skillz Shield home" onClick={() => setOpen(false)}>
         <span className="brand-mark"><Icon name="shield" width="32" height="36" /></span>
         <span><span className="brand-title">Skillz <span>Shield</span></span><span className="brand-suite">OVERKILL HILL P³™</span></span>
       </a>
       <button ref={toggle} className="menu-toggle" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} aria-controls="main-navigation" onClick={() => setOpen(!open)}><Icon name={open ? 'close' : 'menu'} /><span>{open ? 'Close' : 'Menu'}</span></button>
       <nav id="main-navigation" className={`main-navigation ${open ? 'is-open' : ''}`} aria-label="Main navigation">
-        {links.map(([id, label]) => <a href={`#${id}`} key={id} aria-current={active === id ? 'location' : undefined} onClick={() => setOpen(false)}>{label}</a>)}
+        {links.map(([id, label, href]) => <a href={href} key={id} aria-current={page === id ? 'page' : undefined} onClick={() => setOpen(false)}>{label}</a>)}
         <a className="nav-forge" href={FORGE}>Visit the Forge <Icon name="external" width="14" height="14" /></a>
+        <a className="nav-github" href={REPOSITORY} aria-label="Skillz Shield on GitHub" title="Skillz Shield on GitHub"><Icon name="github" width="17" height="17" /></a>
+        <ThemeToggle />
       </nav>
     </div>
   </header>;
@@ -115,58 +145,49 @@ function Integration({ evidence }: { evidence: Evidence | null }) {
   </section>;
 }
 
-export default function App() {
-  const { data: evidence, state } = useEvidence();
-  useEffect(() => {
-    // The evidence panel changes height when its initial fetch settles.
-    if (state === 'loading') return;
-    // Fragment targets do not exist until React mounts on a direct page load.
-    const restoreFragment = () => {
-      let id: string;
-      try { id = decodeURIComponent(window.location.hash.slice(1)); } catch { return; }
-      if (!id) return;
-      const target = document.getElementById(id);
-      if (!target) return;
-      target.focus({ preventScroll: true });
-      // Native scrolling retains the CSS sticky-header offset and motion preference.
-      target.scrollIntoView({ block: 'start', behavior: 'auto' });
-    };
-    const frame = window.requestAnimationFrame(restoreFragment);
-    window.addEventListener('hashchange', restoreFragment);
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener('hashchange', restoreFragment);
-    };
-  }, [state]);
+function EnginesPage({ evidence }: { evidence: Evidence | null }) {
   return <>
-    <a className="skip-link" href="#main-content">Skip to content</a>
-    <Header />
-    <main id="main-content" tabIndex={-1} className="container">
-      <section id="overview" className="hero" aria-labelledby="hero-title">
-        <div className="hero-content"><p className="eyebrow"><span className="small-rule" />THE PROTECTIVE COMPANION TO SKILLZ FORGE</p><h1 id="hero-title">Find what<br />doesn’t <em>hold.</em></h1><p className="hero-description">Good intentions aren’t a security check.<br className="desktop-break" /> Give your Agent Skills a closer inspection.</p><p className="hero-detail">Skillz Shield brings Cisco and NVIDIA security analysis into your repository, with focused scans and evidence you can examine.</p><div className="hero-actions"><a className="button button-primary" href="#integrate">Add Shield to your repository <Icon name="arrow" /></a><a className="button button-quiet" href="#evidence">Inspect the evidence <Icon name="arrow" /></a></div><a className="story-link" href="https://overkillhill.com/writings/murderbird/">A lesson from the MurderBird <Icon name="external" width="13" height="13" /></a></div>
-        <div className="hero-art"><span className="illustration-label">THE SHIELD / INSPECTION NO. 001</span><ForgedShield /><p>Protection starts at the weak point.</p></div>
-      </section>
-      <div className="principle-strip"><div><Icon name="shield" /><span><strong>Two independent engines</strong><small>Cisco Skill Scanner + NVIDIA SkillSpector</small></span></div><div><Icon name="layers" /><span><strong>Skill packages only</strong><small>Drafts welcome. App-only changes skipped.</small></span></div><div><Icon name="code" /><span><strong>Every run, traceable</strong><small>Exact versions. Immutable artifacts.</small></span></div></div>
-      <EvidencePanel evidence={evidence} state={state} />
-      <section id="engines" className="section engines-section" aria-labelledby="engines-heading">
-        <div className="section-heading"><div><p className="eyebrow">TWO LENSES. A CLEARER PICTURE.</p><h2 id="engines-heading">Built on open inspection.</h2></div><p>Official upstream tools do the analysis. Shield connects them, preserves their identities, and makes the result inspectable.</p></div>
-        <div className="engine-grid">{engineInfo.map(info => {
-          const engine = evidence?.scan?.engines.find(item => item.id === info.id);
-          return <article className="engine-card" key={info.id}><div className="engine-card-top"><span className="engine-vendor">{info.vendor}</span><span className="engine-number">{info.number}</span></div><h3>{info.name}</h3><p className="engine-description">{info.description}</p><p className="engine-mode">{info.detail}</p><div className="engine-release"><div><span className="mono-label">VERSION IN PUBLISHED SCAN</span><strong>{engine ? engine.version : 'Not available'}</strong></div><a href={`https://github.com/${info.repo}`} aria-label={`${info.vendor} ${info.name} source repository`}><Icon name="github" width="18" height="18" />Source <Icon name="external" width="13" height="13" /></a></div><EnginePins engine={engine} /></article>;
-        })}</div>
-        <div className="updates-panel"><div className="updates-title"><span className="mono-label">PINNED, NOT FROZEN</span><h3>Stable tools.<br />Evolving defenses.</h3></div><div><p>Shield’s control code stays pinned to a reviewed commit. At scan time, official stable scanner releases resolve to exact source commits, verified wheels, and dependency locks.</p><p>The Skillz integration checks for updates hourly. A changed toolchain triggers a full skill scan; a weekly refresh rechecks vulnerability data. Updates arrive at the next run, subject to GitHub scheduling.</p><a className="text-link" href={`${REPOSITORY}/blob/main/docs/ARCHITECTURE.md`}>Read the update and trust model <Icon name="arrow" /></a></div></div>
-        <ControlProvenance evidence={evidence} />
-      </section>
-      <section className="section workflow-section" aria-labelledby="workflow-heading"><div className="section-heading"><div><p className="eyebrow">SMALL SCOPE. VISIBLE BOUNDARIES.</p><h2 id="workflow-heading">From commit to evidence.</h2></div></div><ol className="workflow-grid">{[
-        ['01', 'Select', 'A committed skill change selects its package and supporting files. App-only changes stop here.'],
-        ['02', 'Resolve', 'Official scanner releases become exact, verified artifacts for this run.'],
-        ['03', 'Inspect', 'Both engines analyze skill content without executing submitted scripts or instructions.'],
-        ['04', 'Review', 'Coverage, findings, and provenance become a sanitized record for maintainers.'],
-      ].map(([number, title, text]) => <li key={number}><span className="workflow-number">{number}</span><h3>{title}</h3><p>{text}</p></li>)}</ol><p className="boundary-note">Unfinished skill packages accepted. No model credentials. No claim that an unflagged skill is safe.</p></section>
-      <Integration evidence={evidence} />
-      <SkillSources />
-      <section className="forge-connection" aria-labelledby="forge-heading"><div><p className="eyebrow">FROM THE SAME WORKSHOP</p><h2 id="forge-heading">Make it capable.<br /><span>Examine it carefully.</span></h2><p>Skillz Forge helps you find and compose useful capabilities.<br />Skillz Shield helps you ask what might go wrong.</p></div><a className="button button-outline" href={FORGE}>Explore Skillz Forge <Icon name="external" /></a></section>
-    </main>
-    <footer className="site-footer"><div className="container"><div className="footer-main"><a className="footer-wordmark" href="#overview"><Icon name="shield" />Skillz Shield</a><p>An open-source project from <a href="https://overkillhill.com/">OverKill Hill P³™</a>.</p><div className="footer-links"><a href="#skill-guidance">Skill guidance</a><a href={REPOSITORY}>GitHub</a><a href={`${REPOSITORY}/blob/main/SECURITY.md`}>Security</a><a href={`${REPOSITORY}/blob/main/LICENSE`}>MIT license</a></div></div><div className="footer-bottom"><p>Built with Vite, React, TypeScript &amp; Tailwind CSS. Hosted on GitHub Pages.</p><p>Cisco and NVIDIA retain their own licenses. No vendor endorsement implied.</p></div></div></footer>
+    <section className="page-intro" aria-labelledby="engines-heading"><p className="eyebrow">TWO LENSES. A CLEARER PICTURE.</p><h1 id="engines-heading">Built on open inspection.</h1><p>Official upstream tools do the analysis. Shield connects them, preserves their identities, and makes the result inspectable.</p></section>
+    <section className="section engines-section"><div className="engine-grid">{engineInfo.map(info => {
+      const engine = evidence?.scan?.engines.find(item => item.id === info.id);
+      return <article className="engine-card" key={info.id}><div className="engine-card-top"><span className="engine-vendor">{info.vendor}</span><span className="engine-number">{info.number}</span></div><h2>{info.name}</h2><p className="engine-description">{info.description}</p><p className="engine-mode">{info.detail}</p><div className="engine-release"><div><span className="mono-label">VERSION IN PUBLISHED SCAN</span><strong>{engine ? engine.version : 'Not available'}</strong></div><a href={`https://github.com/${info.repo}`} aria-label={`${info.vendor} ${info.name} source repository`}><Icon name="github" width="18" height="18" />Source <Icon name="external" width="13" height="13" /></a></div><EnginePins engine={engine} /></article>;
+    })}</div>
+      <div className="updates-panel"><div className="updates-title"><span className="mono-label">PINNED, NOT FROZEN</span><h2>Stable tools.<br />Evolving defenses.</h2></div><div><p>Shield’s control code stays pinned to a reviewed commit. At scan time, official stable scanner releases resolve to exact source commits, verified wheels, and dependency locks.</p><p>The Skillz integration checks for updates hourly. A changed toolchain triggers a full skill scan; a weekly refresh rechecks vulnerability data. Updates arrive at the next run, subject to GitHub scheduling.</p><a className="text-link" href={`${REPOSITORY}/blob/main/docs/ARCHITECTURE.md`}>Read the update and trust model <Icon name="arrow" /></a></div></div>
+      <ControlProvenance evidence={evidence} />
+    </section>
   </>;
+}
+
+function Workflow() {
+  return <section className="section workflow-section" aria-labelledby="workflow-heading"><div className="section-heading"><div><p className="eyebrow">SMALL SCOPE. VISIBLE BOUNDARIES.</p><h2 id="workflow-heading">From commit to evidence.</h2></div></div><ol className="workflow-grid">{[
+    ['01', 'Select', 'A committed skill change selects its package and supporting files. App-only changes stop here.'],
+    ['02', 'Resolve', 'Official scanner releases become exact, verified artifacts for this run.'],
+    ['03', 'Inspect', 'Both engines analyze skill content without executing submitted scripts or instructions.'],
+    ['04', 'Review', 'Coverage, findings, and provenance become a sanitized record for maintainers.'],
+  ].map(([number, title, text]) => <li key={number}><span className="workflow-number">{number}</span><h3>{title}</h3><p>{text}</p></li>)}</ol><p className="boundary-note">Unfinished skill packages accepted. No model credentials. No claim that an unflagged skill is safe.</p></section>;
+}
+
+function HomePage() {
+  return <>
+    <section className="hero" aria-labelledby="hero-title"><div className="hero-content"><p className="eyebrow"><span className="small-rule" />THE PROTECTIVE COMPANION TO SKILLZ FORGE</p><h1 id="hero-title">Find what<br />doesn’t <em>hold.</em></h1><p className="hero-description">Good intentions aren’t a security check.<br className="desktop-break" /> Give your Agent Skills a closer inspection.</p><p className="hero-detail">Skillz Shield brings Cisco and NVIDIA security analysis into your repository, with focused scans and evidence you can examine.</p><div className="hero-actions"><a className="button button-primary" href={pagePath('integrate')}>Add Shield to your repository <Icon name="arrow" /></a><a className="button button-quiet" href={pagePath('evidence')}>Inspect the evidence <Icon name="arrow" /></a></div><a className="story-link" href="https://overkillhill.com/writings/murderbird/">A lesson from the MurderBird <Icon name="external" width="13" height="13" /></a></div><div className="hero-art"><span className="illustration-label">THE SHIELD / INSPECTION NO. 001</span><ForgedShield /><p>Protection starts at the weak point.</p></div></section>
+    <div className="principle-strip"><a href={pagePath('engines')}><Icon name="shield" /><span><strong>Two independent engines</strong><small>Cisco Skill Scanner + NVIDIA SkillSpector</small></span></a><a href={pagePath('integrate')}><Icon name="layers" /><span><strong>Skill packages only</strong><small>Drafts welcome. App-only changes skipped.</small></span></a><a href={pagePath('evidence')}><Icon name="code" /><span><strong>Every run, traceable</strong><small>Exact versions. Immutable artifacts.</small></span></a></div>
+    <Workflow />
+    <section className="route-cards" aria-label="Explore Skillz Shield"><a href={pagePath('evidence')}><span className="mono-label">INSPECT</span><h2>Read the evidence.</h2><p>See coverage, source revisions, and findings without treating a scan as a certificate.</p><Icon name="arrow" /></a><a href={pagePath('engines')}><span className="mono-label">UNDERSTAND</span><h2>Meet the engines.</h2><p>Review the independent tools, immutable pins, and update model.</p><Icon name="arrow" /></a><a href={pagePath('guidance')}><span className="mono-label">LEARN</span><h2>Start at the source.</h2><p>Use the open standard and provider guidance to build better skill packages.</p><Icon name="arrow" /></a></section>
+    <section className="forge-connection" aria-labelledby="forge-heading"><div><p className="eyebrow">FROM THE SAME WORKSHOP</p><h2 id="forge-heading">Make it capable.<br /><span>Examine it carefully.</span></h2><p>Skillz Forge helps you find and compose useful capabilities.<br />Skillz Shield helps you ask what might go wrong.</p></div><a className="button button-outline" href={FORGE}>Explore Skillz Forge <Icon name="external" /></a></section>
+  </>;
+}
+
+function GuidancePage() {
+  return <SkillSources page />;
+}
+
+function Footer() {
+  return <footer className="site-footer"><div className="container"><div className="footer-main"><a className="footer-wordmark" href={pagePath()}><Icon name="shield" />Skillz Shield</a><p>An open-source project from <a href="https://overkillhill.com/">OverKill Hill P³™</a>.</p><div className="footer-links"><a href={pagePath('guidance')}>Skill guidance</a><a href={REPOSITORY}>GitHub</a><a href={`${REPOSITORY}/blob/main/SECURITY.md`}>Security</a><a href={`${REPOSITORY}/blob/main/LICENSE`}>MIT license</a></div></div><div className="footer-bottom"><p>Built with Vite, React, TypeScript &amp; Tailwind CSS. Hosted on GitHub Pages.</p><p>Cisco and NVIDIA retain their own licenses. No vendor endorsement implied.</p></div></div></footer>;
+}
+
+export default function App() {
+  const segment = window.location.pathname.slice(SITE_BASE.length).split('/').filter(Boolean)[0] || 'home';
+  const page = ['home', 'evidence', 'engines', 'integrate', 'guidance'].includes(segment) ? segment : 'home';
+  const { data: evidence, state } = useEvidence();
+  return <><a className="skip-link" href="#main-content">Skip to content</a><Header page={page} /><main id="main-content" tabIndex={-1} className="container page-main">{page === 'home' && <HomePage />}{page === 'evidence' && <EvidencePanel evidence={evidence} state={state} />}{page === 'engines' && <EnginesPage evidence={evidence} />}{page === 'integrate' && <Integration evidence={evidence} />}{page === 'guidance' && <GuidancePage />}</main><Footer /></>;
 }
