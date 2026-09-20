@@ -5,6 +5,9 @@ pins; release tags identify reviewed milestones and are not moved.
 
 ## Unreleased
 
+- Add compact skill guidance and source links, with Agent Skills best practices,
+  provider and project catalogs, and a separately labeled community collection.
+  Identify OpenAI's deprecated skills catalog and current plugins destination.
 - Add a standalone Vite, React, TypeScript, and Tailwind SPA on GitHub Pages,
   reusing Forge's typefaces and component patterns with an inverted dark palette.
 - Publish sanitized security evidence and exact scanner identities separately
