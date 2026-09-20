@@ -46,7 +46,7 @@ class _SafeRedirect(HTTPRedirectHandler):
 
 def fetch(url: str, *, token: str | None = None) -> bytes:
     host = _url(url).hostname
-    headers = {"User-Agent": "OKHP3-skill-security-pipeline", "Accept": "application/vnd.github+json"}
+    headers = {"User-Agent": "OKHP3-skillz-shield", "Accept": "application/vnd.github+json"}
     if token and host == "api.github.com":
         headers["Authorization"] = f"Bearer {token}"
     with build_opener(_SafeRedirect()).open(Request(url, headers=headers), timeout=60) as response:
