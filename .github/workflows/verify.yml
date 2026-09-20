@@ -1,0 +1,47 @@
+name: Verify security pipeline
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python -m unittest discover -s tests -v
+  live-engines:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./
+        with:
+          mode: resolve
+          state: ${{ runner.temp }}/security-state
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - uses: ./
+        with:
+          mode: install
+          state: ${{ runner.temp }}/security-state
+      - name: Exercise both real engines on safe draft and detection fixtures
+        env:
+          STATE_PATH: ${{ runner.temp }}/security-state
+        run: python tests/live_smoke.py --state "$STATE_PATH"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: engine-smoke-evidence
+          path: |
+            ${{ runner.temp }}/security-state/pins.json
+            ${{ runner.temp }}/security-state/smoke-report.json
+          retention-days: 30

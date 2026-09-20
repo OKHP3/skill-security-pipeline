@@ -1,0 +1,67 @@
+name: Skill package security
+description: Package-only Cisco and NVIDIA security scans with immutable per-run vendor pins
+inputs:
+  mode:
+    description: plan, resolve, install, or scan
+    required: true
+  root:
+    description: Checked-out skill repository
+    default: .
+  state:
+    description: Dedicated state directory outside the checked-out repository
+    required: true
+  base:
+    description: Base commit for changed-package selection
+    default: ''
+  head:
+    description: Commit to scan
+    default: HEAD
+  full:
+    description: Select all current skill packages
+    default: 'false'
+outputs:
+  scan:
+    description: Whether the plan contains packages
+    value: ${{ steps.run.outputs.scan }}
+  packages:
+    description: Selected package count
+    value: ${{ steps.run.outputs.packages }}
+  fingerprint:
+    description: Immutable engine and definitions identity
+    value: ${{ steps.run.outputs.fingerprint }}
+  week:
+    description: Weekly vulnerability-database refresh bucket
+    value: ${{ steps.run.outputs.week }}
+  complete:
+    description: Both engines completed every selected package
+    value: ${{ steps.run.outputs.complete }}
+  decision:
+    description: pass, review-required, or incomplete
+    value: ${{ steps.run.outputs.decision }}
+runs:
+  using: composite
+  steps:
+    - if: inputs.mode == 'install'
+      uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+      with:
+        python-version: '3.13'
+    - if: inputs.mode == 'install'
+      uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+      with:
+        version: '0.12.17'
+        enable-cache: false
+    - id: run
+      shell: bash
+      env:
+        PIPELINE_PATH: ${{ github.action_path }}
+        PIPELINE_MODE: ${{ inputs.mode }}
+        TARGET_ROOT: ${{ inputs.root }}
+        STATE_PATH: ${{ inputs.state }}
+        BASE_REVISION: ${{ inputs.base }}
+        HEAD_REVISION: ${{ inputs.head }}
+        FULL_SCAN: ${{ inputs.full }}
+      run: |
+        args=("$PIPELINE_PATH/entrypoint.py" "$PIPELINE_MODE" --root "$TARGET_ROOT" --state "$STATE_PATH" --head "$HEAD_REVISION")
+        if [[ -n "$BASE_REVISION" ]]; then args+=(--base "$BASE_REVISION"); fi
+        if [[ "$FULL_SCAN" == 'true' ]]; then args+=(--full); fi
+        python "${args[@]}"
