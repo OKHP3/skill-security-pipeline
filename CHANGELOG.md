@@ -3,6 +3,15 @@
 Material changes to Skillz Shield are recorded here. Consumers use full commit
 pins; release tags identify reviewed milestones and are not moved.
 
+## Unreleased
+
+- Add a standalone Vite, React, TypeScript, and Tailwind SPA on GitHub Pages,
+  reusing Forge's typefaces and component patterns with an inverted dark palette.
+- Publish sanitized security evidence and exact scanner identities separately
+  from the current Shield action pin, with explicit incomplete and stale states.
+- Separate website builds from scanner verification so frontend-only changes
+  do not run the real-engine smoke suite or expand skill scan scope.
+
 ## [1.0.2](https://github.com/OKHP3/skillz-shield/releases/tag/v1.0.2) - 2026-09-19
 
 - Rename the project from `skill-security-pipeline` to **Skillz Shield**, with

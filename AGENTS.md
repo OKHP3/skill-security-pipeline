@@ -9,7 +9,10 @@ name was `skill-security-pipeline`.
 
 Read [README.md](README.md) for integration and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 for scope and trust boundaries. This repository owns scanner orchestration; the
-`OKHP3/skillz` repository owns the catalog and its consuming workflow.
+`OKHP3/skillz` repository owns the catalog and its consuming workflow. `site/`
+contains Shield's separate Vite, React, TypeScript, and Tailwind SPA, hosted on
+GitHub Pages. The SPA explains the integration and displays public evidence;
+scanner execution remains in Actions.
 
 ## Working rules
 
@@ -44,6 +47,16 @@ official releases; `cisco.py` and `nvidia.py` normalize reports; `runner.py`
 supervises scans and aggregates decisions. Tests mirror those responsibilities.
 
 ## Validation
+
+For website changes, run `npm ci`, `npm run typecheck`, and `npm run build` from
+`site/`. Verify responsive layout, keyboard navigation, copy controls, unavailable
+evidence, and the difference between historical scan pins and the current action
+pin. Keep the Forge font families, spacing, and component conventions, with
+Shield's dark espresso and warm-paper inversion. Do not copy analytics IDs or
+Forge-only application behavior.
+
+Site-only changes belong to the site build workflow. Do not expand scanner
+verification triggers or consumer package discovery to encompass the SPA.
 
 Run the dependency-free contract suite from the repository root:
 

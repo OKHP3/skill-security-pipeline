@@ -24,6 +24,13 @@ at run time; this does not update the consumer's Shield pin.
 
 ## Operating boundaries
 
+The public SPA displays bounded, sanitized evidence snapshots. It accepts no
+skill uploads and contains no scanner credentials. Keep private skill content,
+raw reports, diagnostic text, and arbitrary upstream strings out of published
+snapshots. Preserve the original scan date and source revision when an older
+snapshot is retained after an unavailable refresh. Missing evidence cannot
+become a passing result merely because the website builds successfully.
+
 Use disposable Ubuntu x86_64 GitHub-hosted runners, read-only repository
 permissions, no scan secrets, and state outside the source checkout. Do not use
 `pull_request_target` to execute untrusted contribution code. A scanner parses

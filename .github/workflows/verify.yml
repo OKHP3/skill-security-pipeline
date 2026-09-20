@@ -2,7 +2,21 @@ name: Verify Skillz Shield
 on:
   push:
     branches: [main]
+    paths:
+      - action.yml
+      - entrypoint.py
+      - skill_security/**
+      - tests/**
+      - '!tests/test_site_evidence.py'
+      - .github/workflows/verify.yml
   pull_request:
+    paths:
+      - action.yml
+      - entrypoint.py
+      - skill_security/**
+      - tests/**
+      - '!tests/test_site_evidence.py'
+      - .github/workflows/verify.yml
   workflow_dispatch:
 permissions:
   contents: read
