@@ -5,6 +5,10 @@ pins; release tags identify reviewed milestones and are not moved.
 
 ## Unreleased
 
+- Retain bounded, allowlisted NVIDIA analyzer counters and ledger reason counts,
+  distinguishing complete file coverage from incomplete analysis without exposing
+  scanner messages or changing verdicts.
+
 - Split the public Shield companion into separate Overview, Evidence, Engines,
   Integrate, and Guidance pages, each directly addressable on GitHub Pages.
 - Bring Forge-style GitHub access and a persisted light, dark, or system-display
