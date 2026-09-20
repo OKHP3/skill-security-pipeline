@@ -292,6 +292,9 @@ details[open] > summary > span { transform: rotate(45deg); }
 }
 [data-theme="light"] .site-header { background: #f6f2ee; border-color: #bcae9e; }
 [data-theme="light"] .hero-description { color: #2a2320; }
+[data-theme="light"] .button-quiet, [data-theme="light"] .button-outline { color: #2a2320; }
+[data-theme="light"] .button-quiet:hover { color: #684621; }
+[data-theme="light"] .button-outline:hover { background: #e9e0d5; border-color: #684621; }
 [data-theme="light"] .story-link, [data-theme="light"] .illustration-label, [data-theme="light"] .hero-art > p { color: #625649; }
 [data-theme="light"] .principle-strip { border-color: #527b6c; }
 [data-theme="light"] .principle-strip small { color: #385148; }
