@@ -1,0 +1,30 @@
+name: Bug report
+description: Report a reproducible problem with Skillz Shield.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For vulnerabilities or sensitive findings, use the private security-report link instead.
+        Use synthetic examples. Do not paste credentials, private skills, or raw scanner logs.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+      description: Include whether the result was pass, review-required, or incomplete.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Provide minimal synthetic steps or a public workflow run link.
+    validations:
+      required: true
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions and environment
+      description: Include the Shield commit, vendor versions from pins.json, and runner OS if known.
+    validations:
+      required: true

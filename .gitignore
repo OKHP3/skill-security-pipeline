@@ -2,3 +2,8 @@ __pycache__/
 *.pyc
 .venv/
 .state/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

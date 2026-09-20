@@ -1,4 +1,4 @@
-name: Verify security pipeline
+name: Verify Skillz Shield
 on:
   push:
     branches: [main]

@@ -1,5 +1,9 @@
-name: Skill package security
+name: Skillz Shield
 description: Package-only Cisco and NVIDIA security scans with immutable per-run vendor pins
+author: OverKill Hill P³
+branding:
+  icon: shield
+  color: orange
 inputs:
   mode:
     description: plan, resolve, install, or scan

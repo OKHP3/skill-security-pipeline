@@ -85,7 +85,7 @@ def main() -> int:
         write(state / "report.json", report)
         output("complete", str(report["complete"]).lower())
         output("decision", report["decision"])
-        summary = (f"Skill security: **{report['decision']}**\n\n"
+        summary = (f"Skillz Shield: **{report['decision']}**\n\n"
                    f"Packages completed: {report['completed_packages']}/{report['expected_packages']}. "
                    f"High/critical findings: {report['high_or_critical_findings']}.\n\n"
                    "See the sanitized report artifact for package and rule identifiers. "
@@ -102,5 +102,5 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except (ValueError, OSError, KeyError, subprocess.SubprocessError):
-        print("Security pipeline could not complete; no passing result was issued.", file=sys.stderr)
+        print("Skillz Shield could not complete; no passing result was issued.", file=sys.stderr)
         sys.exit(2)
