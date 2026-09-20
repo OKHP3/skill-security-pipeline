@@ -13,10 +13,15 @@ Its guiding phrase comes from [The MurderBird: What the Water Kept](https://over
 **“Find what doesn’t hold.”** [Skillz Forge](https://overkillhill.com/projects/skillz/)
 makes reusable capabilities discoverable; Shield examines their security risks.
 
-This is a reusable GitHub Action, maintained in `OKHP3/skillz-shield` and formerly
-named `skill-security-pipeline`. It runs in GitHub Actions independently of the
-Skillz Forge GitHub Pages application. It adds no server or browser runtime to
-the catalog.
+Visit [Skillz Shield](https://okhp3.github.io/skillz-shield/) for the public
+interface, scanner identities, security evidence, and installation guidance.
+The Vite, React, TypeScript, and Tailwind SPA is hosted on GitHub Pages. It reuses
+Forge's typography and visual language with an inverted, dark espresso palette.
+
+The reusable GitHub Action runs independently of both websites. The repository
+is `OKHP3/skillz-shield`, formerly `skill-security-pipeline`. Scanning takes place
+in GitHub Actions; the browser displays public evidence and never receives
+scanner credentials or executes submitted skills.
 
 ## What gets checked
 
@@ -41,7 +46,7 @@ usefulness, or maturity evaluation; NVIDIA SkillEvaluator is not included.
 
 Run on a disposable Ubuntu x86_64 GitHub-hosted runner with read-only permissions.
 Pin Shield to a full commit SHA, keep scan state outside the source checkout, and
-do not pass secrets to the scan. This example uses the released `v1.0.1` code;
+do not pass secrets to the scan. This example uses the released `v1.0.2` code;
 documentation on the main branch can describe changes awaiting the next release.
 
 ```yaml
@@ -67,7 +72,7 @@ jobs:
 
       - name: Select skill packages
         id: plan
-        uses: OKHP3/skillz-shield@f81a2ba9cda9be52312b7ebbb793a80ac1b41934 # v1.0.1
+        uses: OKHP3/skillz-shield@b81aff7f323b47ae0747ff33571f3c9bc8ec60cb # v1.0.2
         with:
           mode: plan
           state: ${{ runner.temp }}/skillz-shield-state
@@ -76,7 +81,7 @@ jobs:
 
       - name: Resolve current stable scanner releases
         if: steps.plan.outputs.scan == 'true'
-        uses: OKHP3/skillz-shield@f81a2ba9cda9be52312b7ebbb793a80ac1b41934 # v1.0.1
+        uses: OKHP3/skillz-shield@b81aff7f323b47ae0747ff33571f3c9bc8ec60cb # v1.0.2
         env:
           GH_TOKEN: ${{ github.token }}
         with:
@@ -85,14 +90,14 @@ jobs:
 
       - name: Install verified scanner environments
         if: steps.plan.outputs.scan == 'true'
-        uses: OKHP3/skillz-shield@f81a2ba9cda9be52312b7ebbb793a80ac1b41934 # v1.0.1
+        uses: OKHP3/skillz-shield@b81aff7f323b47ae0747ff33571f3c9bc8ec60cb # v1.0.2
         with:
           mode: install
           state: ${{ runner.temp }}/skillz-shield-state
 
       - name: Scan the selected skills
         if: steps.plan.outputs.scan == 'true'
-        uses: OKHP3/skillz-shield@f81a2ba9cda9be52312b7ebbb793a80ac1b41934 # v1.0.1
+        uses: OKHP3/skillz-shield@b81aff7f323b47ae0747ff33571f3c9bc8ec60cb # v1.0.2
         with:
           mode: scan
           state: ${{ runner.temp }}/skillz-shield-state
@@ -156,9 +161,11 @@ branch edits are not installed.
 | [entrypoint.py](entrypoint.py) | Four-stage command interface: plan, resolve, install, scan |
 | [skill_security/](skill_security/) | Inventory, staging, vendor resolution, report adapters, and process supervision |
 | [tests/](tests/) | Contract tests and inert live-scanner smoke fixtures |
+| [site/](site/) | Standalone Vite, React, TypeScript, and Tailwind public interface |
+| [scripts/](scripts/) | Public evidence snapshot generation |
 | [.github/workflows/verify.yml](.github/workflows/verify.yml) | Adapter verification and real-engine smoke checks |
 | [Architecture](docs/ARCHITECTURE.md) | Scope rules, trust boundaries, action contract, and report flow |
-| [Roadmap](docs/ROADMAP.md) | Proposed future reporting surface; no standalone Shield website is implemented |
+| [Roadmap](docs/ROADMAP.md) | Web companion scope and follow-up opportunities |
 | [Contributing](CONTRIBUTING.md) | Development and validation commands |
 | [Security policy](SECURITY.md) | Private vulnerability reporting and operating boundaries |
 | [Changelog](CHANGELOG.md) | Released changes and the project rename |

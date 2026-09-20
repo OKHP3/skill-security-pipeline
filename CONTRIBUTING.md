@@ -45,6 +45,15 @@ manual runs. Fork pull requests do not run the live-engine job automatically.
 
 ## Changes worth testing
 
+For the public website, work in `site/` with Node.js 24. Run `npm ci`,
+`npm run typecheck`, and `npm run build`; use `npm run dev` for a local preview.
+Follow the existing Forge typography and visual components while retaining
+Shield's inverted dark palette. Check mobile layouts, keyboard access, copy
+feedback, source links, and explicit missing or stale evidence states.
+
+The Pages build is separate from scanner verification. Website-only changes do
+not run the real scanner smoke suite or scan application code as a skill.
+
 - Scope changes: prove that supporting-file edits select their package, unfinished
   drafts remain eligible, and application-only changes avoid scanner work.
 - Adapter changes: cover real supported JSON contracts, malformed or missing

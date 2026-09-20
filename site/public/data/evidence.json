@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "publishedAt": "2026-09-20T03:21:42.360693+00:00",
+  "checkedAt": "2026-09-20T03:21:42.360693+00:00",
+  "availability": "available",
+  "reason": null,
+  "source": {
+    "repository": "OKHP3/skillz",
+    "branch": "main",
+    "headCommit": "cf97075f7bbfebf5805e8258b0c773e398e074cf",
+    "workflowUrl": "https://github.com/OKHP3/skillz/actions/workflows/skill-security.yml"
+  },
+  "control": {
+    "repository": "OKHP3/skillz-shield",
+    "version": "v1.0.2",
+    "commit": "b81aff7f323b47ae0747ff33571f3c9bc8ec60cb",
+    "releaseUrl": "https://github.com/OKHP3/skillz-shield/releases/tag/v1.0.2",
+    "consumerPin": "b81aff7f323b47ae0747ff33571f3c9bc8ec60cb",
+    "consumerActionUrl": "https://github.com/OKHP3/skillz-shield/tree/b81aff7f323b47ae0747ff33571f3c9bc8ec60cb"
+  },
+  "scan": {
+    "observedAt": "2026-09-20T02:18:25.459187+00:00",
+    "sourceCommit": "2f1ce7c7c126fb00d0588bf204d828c5de27c7c6",
+    "sourceMatchesCurrent": false,
+    "runId": 35482030046,
+    "runUrl": "https://github.com/OKHP3/skillz/actions/runs/35482030046",
+    "scope": "full",
+    "decision": "incomplete",
+    "complete": false,
+    "inventoryCount": 382,
+    "expectedPackages": 382,
+    "completedPackages": 18,
+    "highOrCriticalFindings": 195,
+    "findingsBySeverity": {
+      "critical": 20,
+      "high": 175,
+      "medium": 241,
+      "low": 59,
+      "info": 0
+    },
+    "controlPin": "f81a2ba9cda9be52312b7ebbb793a80ac1b41934",
+    "controlActionUrl": "https://github.com/OKHP3/skillz-shield/tree/f81a2ba9cda9be52312b7ebbb793a80ac1b41934",
+    "toolchainFingerprint": "26ada5952e11cde715440a08bb25a105719eb7a0e195da48e3acd475325bc0ad",
+    "engines": [
+      {
+        "id": "cisco",
+        "name": "Cisco Skill Scanner",
+        "repository": "cisco-ai-defense/skill-scanner",
+        "version": "2.1.0",
+        "commit": "a24df340ca6056a6446a239f4a7b114b11c6073a",
+        "wheelSha256": "c84292b720bf0eddc8913fe3017dcdb05bd7e98eb19f6ee61dee2c4eb9fa901e",
+        "lockSha256": "e4cd40cede7859485efaaa1644d698dd736427ec3b17ab346bc75c5a73cbb283",
+        "projectSha256": "ddcb2431f503e54964ec7078fd13f0bb3782b65c26ba6410219a70446d8fab91"
+      },
+      {
+        "id": "nvidia",
+        "name": "NVIDIA SkillSpector",
+        "repository": "NVIDIA/SkillSpector",
+        "version": "2.11.2",
+        "commit": "69dcdfb74487d361ba4c811d088cfdea2ff3a9dc",
+        "wheelSha256": "9e0eb261d63e7ae92f94177a44aeb8fef5e0ceeaa4d09135780baf94cbc420ec",
+        "lockSha256": "5de3b0c121a34472026462c9fad368019accbe094ba4693198364c105e5ea93c",
+        "projectSha256": "e6c98e2724424e2b291b25719506c544d1bb17d061ee8ffdd35d4f97971a19ae"
+      }
+    ]
+  }
+}

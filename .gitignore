@@ -7,3 +7,5 @@ __pycache__/
 !.env.example
 .DS_Store
 Thumbs.db
+node_modules/
+site/dist/

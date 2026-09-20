@@ -4,7 +4,27 @@ Skillz Shield separates a pinned control layer from automatically resolved
 scanner releases. The consuming repository owns its triggers and merge policy;
 Shield owns package selection, vendor verification, bounded scanning, and
 normalized evidence. It does not run the consuming application or publish its
-GitHub Pages site.
+GitHub Pages site. Shield's own static web interface is a separate Vite, React,
+TypeScript, and Tailwind build under `site/`.
+
+## Public website and evidence
+
+The website reads a versioned public JSON snapshot rather than accessing Actions
+artifacts with browser credentials. `scripts/build_site_evidence.py` finds
+completed runs of the Skillz security workflow from the same repository's main
+branch, checks artifact identity and hashes, verifies source and coverage
+consistency, and publishes only allowlisted aggregate fields. Raw package text,
+scanner messages, and individual finding snippets are not website inputs.
+
+The snapshot separates three identities: the latest Shield release, the current
+consumer Action pin, and the control and vendor pins used by the historical
+full scan. It retains the scan's source revision and date. An unavailable refresh
+keeps retained evidence explicitly stale, or shows unavailable if no valid
+snapshot exists. A plan-only or cache-skipped run is not a new passing scan.
+
+The Pages workflow builds and validates the SPA independently of the scanner's
+verdict. Website-only edits do not run scanner verification. The consumer's
+package-only workflow still skips application code.
 
 ## Four stages
 
