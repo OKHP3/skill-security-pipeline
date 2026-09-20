@@ -13,10 +13,11 @@ const catalogs = [
   { label: 'NVIDIA', url: 'https://github.com/NVIDIA/skills' },
 ];
 
-export default function SkillSources() {
+export default function SkillSources({ page = false }: { page?: boolean }) {
+  const Heading = page ? 'h1' : 'h2';
   return <section id="skill-guidance" className="section sources-section" aria-labelledby="sources-heading" tabIndex={-1}>
     <div className="section-heading">
-      <div><p className="eyebrow">SKILL BASICS &amp; SOURCES</p><h2 id="sources-heading">Start at the source.</h2></div>
+      <div><p className="eyebrow">SKILL BASICS &amp; SOURCES</p><Heading id="sources-heading">Start at the source.</Heading></div>
       <p>An Agent Skill packages instructions and supporting files for a task. For authoring guidance and examples, go to the sources below.</p>
     </div>
     <a className="sources-feature" href="https://agentskills.io/skill-creation/best-practices">
