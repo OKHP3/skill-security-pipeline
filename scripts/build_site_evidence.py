@@ -75,7 +75,8 @@ def trusted_run(run: dict) -> bool:
             and isinstance(run.get("head_sha"), str) and bool(SHA.fullmatch(run["head_sha"]))
             and run.get("event") in {"push", "schedule", "workflow_dispatch"}
             and run.get("status") == "completed"
-            and run.get("conclusion") in {"success", "failure"}
+            and run.get("conclusion") in {"success", "failure", "timed_out", "cancelled",
+                                          "action_required", "startup_failure", "neutral", "skipped", "stale"}
             and run.get("pull_requests") == [])
 
 
@@ -205,6 +206,8 @@ class GitHub:
 
     def report(self, run: dict) -> tuple[dict | None, bool]:
         """None/False means a genuine plan-only run, never a clean scan."""
+        if run.get("conclusion") not in {"success", "failure"}:
+            return None, True
         try:
             payload = self.get(f"repos/{SOURCE}/actions/runs/{run['id']}/artifacts?per_page=100")
             require(isinstance(payload, dict) and isinstance(payload.get("artifacts"), list))

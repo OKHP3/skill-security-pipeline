@@ -216,6 +216,37 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(api.report(run_fixture()), (None, True))
             self.assertEqual(get.call_count, 1)
 
+    def test_terminal_runs_remain_visible_as_unavailable_evidence(self):
+        for conclusion in ("timed_out", "cancelled", "action_required", "startup_failure", "neutral", "skipped", "stale"):
+            with self.subTest(conclusion=conclusion):
+                run = run_fixture() | {"conclusion": conclusion}
+                self.assertTrue(site.trusted_run(run))
+                api = site.GitHub()
+                with patch.object(api, "get") as get:
+                    self.assertEqual(api.report(run), (None, True))
+                    get.assert_not_called()
+
+    def test_newer_terminal_run_makes_older_report_stale(self):
+        report, plan, pins = fixture()
+        older = run_fixture()
+        newer = older | {"id": 43, "conclusion": "timed_out"}
+        api = site.GitHub()
+        def get(path):
+            if path.endswith("/commits/main") or "/commits/v" in path:
+                return {"sha": SHA}
+            if path.endswith("/releases/latest"):
+                return {"tag_name": "v1.0.2", "draft": False, "prerelease": False}
+            if "/runs?" in path:
+                return {"workflow_runs": [newer, older]}
+            raise AssertionError(path)
+        with patch.object(api, "get", side_effect=get), patch.object(api, "workflow", return_value=f"uses: OKHP3/skillz-shield@{PIN}"), \
+                patch.object(api, "report", side_effect=lambda run: (None, True) if run["id"] == 43 else
+                             ({"report.json": report, "plan.json": plan, "pins.json": pins}, False)):
+            result = site.collect(api, NOW)
+        self.assertEqual(result["scan"]["runId"], 42)
+        self.assertEqual(result["availability"], "stale")
+        self.assertEqual(result["reason"], "newer-evidence-unavailable")
+
     def test_collection_continues_past_newer_plan_only_run(self):
         report, plan, pins = fixture()
         older = run_fixture()
