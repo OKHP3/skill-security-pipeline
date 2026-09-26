@@ -140,6 +140,10 @@ safe, useful, mature, or ready for production.**
 
 ## How updates arrive
 
+See the [technology inventory and update plan](docs/TECHNOLOGY-STACK.md) for
+declared versions, current stable release comparisons, and the weekly advisory
+freshness workflow alongside Dependabot's dependency-update pull requests.
+
 The Shield control code stays pinned to a reviewed commit. On each actual scan,
 it resolves official stable scanner releases to immutable source commits,
 SHA-256-verified wheels, and vendor dependency locks. Compatible new releases

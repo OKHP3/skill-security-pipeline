@@ -1,0 +1,1400 @@
+{
+  "checkedAt": "2026-09-26T15:28:39.217072+00:00",
+  "technologies": [
+    {
+      "technology": "@esbuild/aix-ppc64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/aix-ppc64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Faix-ppc64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/android-arm",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/android-arm",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fandroid-arm/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/android-arm64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/android-arm64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fandroid-arm64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/android-x64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/android-x64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fandroid-x64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/darwin-arm64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/darwin-arm64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fdarwin-arm64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/darwin-x64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/darwin-x64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fdarwin-x64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/freebsd-arm64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/freebsd-arm64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Ffreebsd-arm64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/freebsd-x64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/freebsd-x64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Ffreebsd-x64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/linux-arm",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/linux-arm",
+      "source": "https://registry.npmjs.org/%40esbuild%2Flinux-arm/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/linux-arm64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/linux-arm64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Flinux-arm64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/linux-ia32",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/linux-ia32",
+      "source": "https://registry.npmjs.org/%40esbuild%2Flinux-ia32/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/linux-loong64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/linux-loong64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Flinux-loong64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/linux-mips64el",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/linux-mips64el",
+      "source": "https://registry.npmjs.org/%40esbuild%2Flinux-mips64el/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/linux-ppc64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/linux-ppc64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Flinux-ppc64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/linux-riscv64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/linux-riscv64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Flinux-riscv64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/linux-s390x",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/linux-s390x",
+      "source": "https://registry.npmjs.org/%40esbuild%2Flinux-s390x/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/linux-x64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/linux-x64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Flinux-x64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/netbsd-arm64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/netbsd-arm64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fnetbsd-arm64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/netbsd-x64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/netbsd-x64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fnetbsd-x64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/openbsd-arm64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/openbsd-arm64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fopenbsd-arm64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/openbsd-x64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/openbsd-x64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fopenbsd-x64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/openharmony-arm64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/openharmony-arm64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fopenharmony-arm64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/sunos-x64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/sunos-x64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fsunos-x64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/win32-arm64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/win32-arm64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fwin32-arm64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/win32-ia32",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/win32-ia32",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fwin32-ia32/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@esbuild/win32-x64",
+      "current": "0.28.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@esbuild/win32-x64",
+      "source": "https://registry.npmjs.org/%40esbuild%2Fwin32-x64/latest",
+      "latest": "0.28.2",
+      "status": "current"
+    },
+    {
+      "technology": "@jridgewell/gen-mapping",
+      "current": "0.3.13",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@jridgewell/gen-mapping",
+      "source": "https://registry.npmjs.org/%40jridgewell%2Fgen-mapping/latest",
+      "latest": "0.3.13",
+      "status": "current"
+    },
+    {
+      "technology": "@jridgewell/remapping",
+      "current": "2.3.5",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@jridgewell/remapping",
+      "source": "https://registry.npmjs.org/%40jridgewell%2Fremapping/latest",
+      "latest": "2.3.5",
+      "status": "current"
+    },
+    {
+      "technology": "@jridgewell/resolve-uri",
+      "current": "3.1.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@jridgewell/resolve-uri",
+      "source": "https://registry.npmjs.org/%40jridgewell%2Fresolve-uri/latest",
+      "latest": "3.1.2",
+      "status": "current"
+    },
+    {
+      "technology": "@jridgewell/sourcemap-codec",
+      "current": "1.6.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@jridgewell/sourcemap-codec",
+      "source": "https://registry.npmjs.org/%40jridgewell%2Fsourcemap-codec/latest",
+      "latest": "1.6.0",
+      "status": "current"
+    },
+    {
+      "technology": "@jridgewell/trace-mapping",
+      "current": "0.3.31",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@jridgewell/trace-mapping",
+      "source": "https://registry.npmjs.org/%40jridgewell%2Ftrace-mapping/latest",
+      "latest": "0.3.31",
+      "status": "current"
+    },
+    {
+      "technology": "@oxc-project/types",
+      "current": "0.150.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@oxc-project/types",
+      "source": "https://registry.npmjs.org/%40oxc-project%2Ftypes/latest",
+      "latest": "0.151.0",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-android-arm-eabi",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-android-arm-eabi",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-android-arm-eabi/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-android-arm64",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-android-arm64",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-android-arm64/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-darwin-arm64",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-darwin-arm64",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-darwin-arm64/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-darwin-x64",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-darwin-x64",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-darwin-x64/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-freebsd-x64",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-freebsd-x64",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-freebsd-x64/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-linux-arm-gnueabihf",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-linux-arm-gnueabihf",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-arm-gnueabihf/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-linux-arm64-gnu",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-linux-arm64-gnu",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-arm64-gnu/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-linux-arm64-musl",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-linux-arm64-musl",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-arm64-musl/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-linux-ppc64-gnu",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-linux-ppc64-gnu",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-ppc64-gnu/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-linux-s390x-gnu",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-linux-s390x-gnu",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-s390x-gnu/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-linux-x64-gnu",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-linux-x64-gnu",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-x64-gnu/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-linux-x64-musl",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-linux-x64-musl",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-x64-musl/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-openharmony-arm64",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-openharmony-arm64",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-openharmony-arm64/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-win32-arm64-msvc",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-win32-arm64-msvc",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-win32-arm64-msvc/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/binding-win32-x64-msvc",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/binding-win32-x64-msvc",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fbinding-win32-x64-msvc/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "@rolldown/pluginutils",
+      "current": "1.0.1",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@rolldown/pluginutils",
+      "source": "https://registry.npmjs.org/%40rolldown%2Fpluginutils/latest",
+      "latest": "1.0.1",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/node",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/node",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Fnode/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-android-arm64",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-android-arm64",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-android-arm64/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-darwin-arm64",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-darwin-arm64",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-darwin-arm64/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-darwin-x64",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-darwin-x64",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-darwin-x64/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-freebsd-x64",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-freebsd-x64",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-freebsd-x64/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-linux-arm-gnueabihf",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-linux-arm-gnueabihf",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-linux-arm-gnueabihf/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-linux-arm64-gnu",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-linux-arm64-gnu",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-linux-arm64-gnu/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-linux-arm64-musl",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-linux-arm64-musl",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-linux-arm64-musl/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-linux-x64-gnu",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-linux-x64-gnu",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-linux-x64-gnu/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-linux-x64-musl",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-linux-x64-musl",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-linux-x64-musl/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-wasm32-wasi",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-wasm32-wasi",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-wasm32-wasi/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-win32-arm64-msvc",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-win32-arm64-msvc",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-win32-arm64-msvc/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/oxide-win32-x64-msvc",
+      "current": "4.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@tailwindcss/oxide-win32-x64-msvc",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Foxide-win32-x64-msvc/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@tailwindcss/vite",
+      "current": "4.3.3",
+      "scope": "direct npm",
+      "location": "node_modules/@tailwindcss/vite",
+      "source": "https://registry.npmjs.org/%40tailwindcss%2Fvite/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "@types/node",
+      "current": "26.6.1",
+      "scope": "direct npm",
+      "location": "node_modules/@types/node",
+      "source": "https://registry.npmjs.org/%40types%2Fnode/latest",
+      "latest": "26.6.3",
+      "status": "update available"
+    },
+    {
+      "technology": "@types/react",
+      "current": "19.3.0",
+      "scope": "direct npm",
+      "location": "node_modules/@types/react",
+      "source": "https://registry.npmjs.org/%40types%2Freact/latest",
+      "latest": "19.3.0",
+      "status": "current"
+    },
+    {
+      "technology": "@types/react-dom",
+      "current": "19.3.0",
+      "scope": "direct npm",
+      "location": "node_modules/@types/react-dom",
+      "source": "https://registry.npmjs.org/%40types%2Freact-dom/latest",
+      "latest": "19.3.0",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-aix-ppc64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-aix-ppc64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-aix-ppc64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-darwin-arm64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-darwin-arm64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-darwin-arm64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-darwin-x64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-darwin-x64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-darwin-x64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-freebsd-arm64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-freebsd-arm64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-freebsd-arm64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-freebsd-x64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-freebsd-x64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-freebsd-x64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-linux-arm",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-linux-arm",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-linux-arm/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-linux-arm64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-linux-arm64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-linux-arm64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-linux-loong64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-linux-loong64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-linux-loong64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-linux-mips64el",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-linux-mips64el",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-linux-mips64el/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-linux-ppc64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-linux-ppc64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-linux-ppc64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-linux-riscv64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-linux-riscv64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-linux-riscv64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-linux-s390x",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-linux-s390x",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-linux-s390x/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-linux-x64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-linux-x64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-linux-x64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-netbsd-arm64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-netbsd-arm64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-netbsd-arm64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-netbsd-x64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-netbsd-x64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-netbsd-x64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-openbsd-arm64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-openbsd-arm64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-openbsd-arm64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-openbsd-x64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-openbsd-x64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-openbsd-x64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-sunos-x64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-sunos-x64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-sunos-x64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-win32-arm64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-win32-arm64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-win32-arm64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@typescript/typescript-win32-x64",
+      "current": "7.0.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/@typescript/typescript-win32-x64",
+      "source": "https://registry.npmjs.org/%40typescript%2Ftypescript-win32-x64/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "@vitejs/plugin-react",
+      "current": "6.1.1",
+      "scope": "direct npm",
+      "location": "node_modules/@vitejs/plugin-react",
+      "source": "https://registry.npmjs.org/%40vitejs%2Fplugin-react/latest",
+      "latest": "6.1.1",
+      "status": "current"
+    },
+    {
+      "technology": "csstype",
+      "current": "3.2.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/csstype",
+      "source": "https://registry.npmjs.org/csstype/latest",
+      "latest": "3.2.3",
+      "status": "current"
+    },
+    {
+      "technology": "detect-libc",
+      "current": "2.1.2",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/detect-libc",
+      "source": "https://registry.npmjs.org/detect-libc/latest",
+      "latest": "2.1.2",
+      "status": "current"
+    },
+    {
+      "technology": "enhanced-resolve",
+      "current": "5.25.1",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/enhanced-resolve",
+      "source": "https://registry.npmjs.org/enhanced-resolve/latest",
+      "latest": "5.25.1",
+      "status": "current"
+    },
+    {
+      "technology": "fdir",
+      "current": "6.5.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/fdir",
+      "source": "https://registry.npmjs.org/fdir/latest",
+      "latest": "6.5.0",
+      "status": "current"
+    },
+    {
+      "technology": "fsevents",
+      "current": "2.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/fsevents",
+      "source": "https://registry.npmjs.org/fsevents/latest",
+      "latest": "2.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "graceful-fs",
+      "current": "4.2.11",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/graceful-fs",
+      "source": "https://registry.npmjs.org/graceful-fs/latest",
+      "latest": "4.2.11",
+      "status": "current"
+    },
+    {
+      "technology": "jiti",
+      "current": "2.7.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/jiti",
+      "source": "https://registry.npmjs.org/jiti/latest",
+      "latest": "2.7.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss",
+      "source": "https://registry.npmjs.org/lightningcss/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss",
+      "source": "https://registry.npmjs.org/lightningcss/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-android-arm64",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-android-arm64",
+      "source": "https://registry.npmjs.org/lightningcss-android-arm64/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-android-arm64",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-android-arm64",
+      "source": "https://registry.npmjs.org/lightningcss-android-arm64/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-darwin-arm64",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-darwin-arm64",
+      "source": "https://registry.npmjs.org/lightningcss-darwin-arm64/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-darwin-arm64",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-darwin-arm64",
+      "source": "https://registry.npmjs.org/lightningcss-darwin-arm64/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-darwin-x64",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-darwin-x64",
+      "source": "https://registry.npmjs.org/lightningcss-darwin-x64/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-darwin-x64",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-darwin-x64",
+      "source": "https://registry.npmjs.org/lightningcss-darwin-x64/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-freebsd-x64",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-freebsd-x64",
+      "source": "https://registry.npmjs.org/lightningcss-freebsd-x64/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-freebsd-x64",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-freebsd-x64",
+      "source": "https://registry.npmjs.org/lightningcss-freebsd-x64/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-linux-arm-gnueabihf",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-linux-arm-gnueabihf",
+      "source": "https://registry.npmjs.org/lightningcss-linux-arm-gnueabihf/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-linux-arm-gnueabihf",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-linux-arm-gnueabihf",
+      "source": "https://registry.npmjs.org/lightningcss-linux-arm-gnueabihf/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-linux-arm64-gnu",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-linux-arm64-gnu",
+      "source": "https://registry.npmjs.org/lightningcss-linux-arm64-gnu/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-linux-arm64-gnu",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-linux-arm64-gnu",
+      "source": "https://registry.npmjs.org/lightningcss-linux-arm64-gnu/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-linux-arm64-musl",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-linux-arm64-musl",
+      "source": "https://registry.npmjs.org/lightningcss-linux-arm64-musl/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-linux-arm64-musl",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-linux-arm64-musl",
+      "source": "https://registry.npmjs.org/lightningcss-linux-arm64-musl/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-linux-x64-gnu",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-linux-x64-gnu",
+      "source": "https://registry.npmjs.org/lightningcss-linux-x64-gnu/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-linux-x64-gnu",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-linux-x64-gnu",
+      "source": "https://registry.npmjs.org/lightningcss-linux-x64-gnu/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-linux-x64-musl",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-linux-x64-musl",
+      "source": "https://registry.npmjs.org/lightningcss-linux-x64-musl/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-linux-x64-musl",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-linux-x64-musl",
+      "source": "https://registry.npmjs.org/lightningcss-linux-x64-musl/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-win32-arm64-msvc",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-win32-arm64-msvc",
+      "source": "https://registry.npmjs.org/lightningcss-win32-arm64-msvc/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-win32-arm64-msvc",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-win32-arm64-msvc",
+      "source": "https://registry.npmjs.org/lightningcss-win32-arm64-msvc/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "lightningcss-win32-x64-msvc",
+      "current": "1.32.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/lightningcss-win32-x64-msvc",
+      "source": "https://registry.npmjs.org/lightningcss-win32-x64-msvc/latest",
+      "latest": "1.33.0",
+      "status": "update available"
+    },
+    {
+      "technology": "lightningcss-win32-x64-msvc",
+      "current": "1.33.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/vite/node_modules/lightningcss-win32-x64-msvc",
+      "source": "https://registry.npmjs.org/lightningcss-win32-x64-msvc/latest",
+      "latest": "1.33.0",
+      "status": "current"
+    },
+    {
+      "technology": "magic-string",
+      "current": "0.30.21",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/magic-string",
+      "source": "https://registry.npmjs.org/magic-string/latest",
+      "latest": "1.4.2",
+      "status": "update available"
+    },
+    {
+      "technology": "nanoid",
+      "current": "3.3.19",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/nanoid",
+      "source": "https://registry.npmjs.org/nanoid/latest",
+      "latest": "6.0.1",
+      "status": "update available"
+    },
+    {
+      "technology": "picocolors",
+      "current": "1.1.1",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/picocolors",
+      "source": "https://registry.npmjs.org/picocolors/latest",
+      "latest": "1.1.1",
+      "status": "current"
+    },
+    {
+      "technology": "picomatch",
+      "current": "4.0.7",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/picomatch",
+      "source": "https://registry.npmjs.org/picomatch/latest",
+      "latest": "4.0.7",
+      "status": "current"
+    },
+    {
+      "technology": "postcss",
+      "current": "8.5.28",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/postcss",
+      "source": "https://registry.npmjs.org/postcss/latest",
+      "latest": "8.5.28",
+      "status": "current"
+    },
+    {
+      "technology": "react",
+      "current": "19.3.0",
+      "scope": "direct npm",
+      "location": "node_modules/react",
+      "source": "https://registry.npmjs.org/react/latest",
+      "latest": "19.3.0",
+      "status": "current"
+    },
+    {
+      "technology": "react-dom",
+      "current": "19.3.0",
+      "scope": "direct npm",
+      "location": "node_modules/react-dom",
+      "source": "https://registry.npmjs.org/react-dom/latest",
+      "latest": "19.3.0",
+      "status": "current"
+    },
+    {
+      "technology": "rolldown",
+      "current": "1.2.9",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/rolldown",
+      "source": "https://registry.npmjs.org/rolldown/latest",
+      "latest": "1.2.11",
+      "status": "update available"
+    },
+    {
+      "technology": "scheduler",
+      "current": "0.28.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/scheduler",
+      "source": "https://registry.npmjs.org/scheduler/latest",
+      "latest": "0.28.0",
+      "status": "current"
+    },
+    {
+      "technology": "source-map-js",
+      "current": "1.2.1",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/source-map-js",
+      "source": "https://registry.npmjs.org/source-map-js/latest",
+      "latest": "1.2.1",
+      "status": "current"
+    },
+    {
+      "technology": "tailwindcss",
+      "current": "4.3.3",
+      "scope": "direct npm",
+      "location": "node_modules/tailwindcss",
+      "source": "https://registry.npmjs.org/tailwindcss/latest",
+      "latest": "4.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "tapable",
+      "current": "2.3.3",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/tapable",
+      "source": "https://registry.npmjs.org/tapable/latest",
+      "latest": "2.3.3",
+      "status": "current"
+    },
+    {
+      "technology": "tinyglobby",
+      "current": "0.2.17",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/tinyglobby",
+      "source": "https://registry.npmjs.org/tinyglobby/latest",
+      "latest": "0.2.17",
+      "status": "current"
+    },
+    {
+      "technology": "typescript",
+      "current": "7.0.2",
+      "scope": "direct npm",
+      "location": "node_modules/typescript",
+      "source": "https://registry.npmjs.org/typescript/latest",
+      "latest": "7.0.2",
+      "status": "current"
+    },
+    {
+      "technology": "undici-types",
+      "current": "8.9.0",
+      "scope": "transitive npm (includes optional platforms)",
+      "location": "node_modules/undici-types",
+      "source": "https://registry.npmjs.org/undici-types/latest",
+      "latest": "8.11.2",
+      "status": "update available"
+    },
+    {
+      "technology": "vite",
+      "current": "8.3.0",
+      "scope": "direct npm",
+      "location": "node_modules/vite",
+      "source": "https://registry.npmjs.org/vite/latest",
+      "latest": "8.3.1",
+      "status": "update available"
+    },
+    {
+      "technology": "Node.js (stable)",
+      "current": "24.19.0",
+      "scope": "runtime",
+      "location": ".github/workflows/site.yml",
+      "source": "https://nodejs.org/dist/index.json",
+      "latest": "v26.10.0",
+      "status": "update available"
+    },
+    {
+      "technology": "Node.js (LTS adoption target)",
+      "current": "24.19.0",
+      "scope": "runtime",
+      "location": ".github/workflows/site.yml",
+      "source": "https://nodejs.org/dist/index.json",
+      "latest": "v24.21.0",
+      "status": "update available"
+    },
+    {
+      "technology": "Node.js (Replit major)",
+      "current": "20",
+      "scope": "runtime",
+      "location": ".replit",
+      "source": "https://nodejs.org/dist/index.json",
+      "latest": "v24.21.0",
+      "status": "review floating or unknown version"
+    },
+    {
+      "technology": "npm",
+      "current": "11.17.0",
+      "scope": "bundled with CI Node; not separately pinned",
+      "location": ".github/workflows/site.yml",
+      "source": "https://registry.npmjs.org/npm/latest",
+      "latest": "12.1.0",
+      "status": "update available"
+    },
+    {
+      "technology": "Python (scanner)",
+      "current": "3.13",
+      "scope": "runtime minor; patch floats",
+      "location": "action.yml",
+      "source": "https://www.python.org/downloads/",
+      "latest": "3.14.7",
+      "status": "review floating or unknown version"
+    },
+    {
+      "technology": "Python (Replit)",
+      "current": "3.12",
+      "scope": "runtime minor; patch floats",
+      "location": ".replit",
+      "source": "https://www.python.org/downloads/",
+      "latest": "3.14.7",
+      "status": "review floating or unknown version"
+    },
+    {
+      "technology": "uv",
+      "current": "0.12.17",
+      "scope": "scanner installer",
+      "location": "action.yml",
+      "source": "https://github.com/astral-sh/uv/releases/latest",
+      "latest": "0.12.19",
+      "status": "update available"
+    },
+    {
+      "technology": "Cisco Skill Scanner",
+      "current": "2.1.0",
+      "scope": "historical scan only: 2026-09-20T02:18:25.459187+00:00",
+      "location": "site/public/data/evidence.json",
+      "source": "https://github.com/cisco-ai-defense/skill-scanner/releases/latest",
+      "latest": "2.1.0",
+      "status": "current"
+    },
+    {
+      "technology": "NVIDIA SkillSpector",
+      "current": "2.11.2",
+      "scope": "historical scan only: 2026-09-20T02:18:25.459187+00:00",
+      "location": "site/public/data/evidence.json",
+      "source": "https://github.com/NVIDIA/SkillSpector/releases/latest",
+      "latest": "2.12.0",
+      "status": "update available"
+    },
+    {
+      "technology": "actions/setup-python",
+      "current": "7",
+      "scope": "GitHub Action; version label, immutable SHA 5fda3b95a4ea91299a34e894583c3862153e4b97",
+      "location": "action.yml",
+      "source": "https://github.com/actions/setup-python/releases/latest",
+      "latest": "7.0.0",
+      "status": "review floating or unknown version"
+    },
+    {
+      "technology": "astral-sh/setup-uv",
+      "current": "10.1.0",
+      "scope": "GitHub Action; version label, immutable SHA bec219d24cd3e171d82865faccec33120bb574f4",
+      "location": "action.yml",
+      "source": "https://github.com/astral-sh/setup-uv/releases/latest",
+      "latest": "10.2.0",
+      "status": "update available"
+    },
+    {
+      "technology": "actions/checkout",
+      "current": "7.0.1",
+      "scope": "GitHub Action; version label, immutable SHA 3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "location": ".github/workflows/site.yml",
+      "source": "https://github.com/actions/checkout/releases/latest",
+      "latest": "7.0.1",
+      "status": "current"
+    },
+    {
+      "technology": "actions/setup-node",
+      "current": "7.0.0",
+      "scope": "GitHub Action; version label, immutable SHA 820762786026740c76f36085b0efc47a31fe5020",
+      "location": ".github/workflows/site.yml",
+      "source": "https://github.com/actions/setup-node/releases/latest",
+      "latest": "7.0.0",
+      "status": "current"
+    },
+    {
+      "technology": "actions/upload-pages-artifact",
+      "current": "5.0.0",
+      "scope": "GitHub Action; version label, immutable SHA fc324d3547104276b827a68afc52ff2a11cc49c9",
+      "location": ".github/workflows/site.yml",
+      "source": "https://github.com/actions/upload-pages-artifact/releases/latest",
+      "latest": "5.0.0",
+      "status": "current"
+    },
+    {
+      "technology": "actions/deploy-pages",
+      "current": "5.0.1",
+      "scope": "GitHub Action; version label, immutable SHA 368f82528645a54fb793d4d04e342629a3f51346",
+      "location": ".github/workflows/site.yml",
+      "source": "https://github.com/actions/deploy-pages/releases/latest",
+      "latest": "5.0.1",
+      "status": "current"
+    },
+    {
+      "technology": "actions/checkout",
+      "current": "7.0.1",
+      "scope": "GitHub Action; version label, immutable SHA 3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "location": ".github/workflows/technology-freshness.yml",
+      "source": "https://github.com/actions/checkout/releases/latest",
+      "latest": "7.0.1",
+      "status": "current"
+    },
+    {
+      "technology": "actions/upload-artifact",
+      "current": "7.0.1",
+      "scope": "GitHub Action; version label, immutable SHA 043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+      "location": ".github/workflows/technology-freshness.yml",
+      "source": "https://github.com/actions/upload-artifact/releases/latest",
+      "latest": "7.0.1",
+      "status": "current"
+    },
+    {
+      "technology": "actions/checkout",
+      "current": "7.0.1",
+      "scope": "GitHub Action; version label, immutable SHA 3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "location": ".github/workflows/verify.yml",
+      "source": "https://github.com/actions/checkout/releases/latest",
+      "latest": "7.0.1",
+      "status": "current"
+    },
+    {
+      "technology": "actions/checkout",
+      "current": "7.0.1",
+      "scope": "GitHub Action; version label, immutable SHA 3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "location": ".github/workflows/verify.yml",
+      "source": "https://github.com/actions/checkout/releases/latest",
+      "latest": "7.0.1",
+      "status": "current"
+    },
+    {
+      "technology": "actions/checkout",
+      "current": "7.0.1",
+      "scope": "GitHub Action; version label, immutable SHA 3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "location": ".github/workflows/verify.yml",
+      "source": "https://github.com/actions/checkout/releases/latest",
+      "latest": "7.0.1",
+      "status": "current"
+    },
+    {
+      "technology": "actions/upload-artifact",
+      "current": "7.0.1",
+      "scope": "GitHub Action; version label, immutable SHA 043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+      "location": ".github/workflows/verify.yml",
+      "source": "https://github.com/actions/upload-artifact/releases/latest",
+      "latest": "7.0.1",
+      "status": "current"
+    }
+  ]
+}
