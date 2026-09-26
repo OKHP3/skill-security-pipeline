@@ -1,0 +1,42 @@
+name: Technology freshness
+
+on:
+  schedule:
+    - cron: '43 8 * * 1'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/check_technology_versions.py'
+      - 'scripts/tests/**'
+      - '.github/workflows/technology-freshness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Test release comparisons without network access
+        run: python -m unittest discover -s scripts/tests -v
+      - name: Compare committed versions with public stable releases
+        if: github.event_name != 'pull_request'
+        run: python scripts/check_technology_versions.py --output-dir "$RUNNER_TEMP/technology" --check
+      - name: Publish comparison summary even when updates are found
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          if [ -f "$RUNNER_TEMP/technology/technology-versions.md" ]; then
+            cat "$RUNNER_TEMP/technology/technology-versions.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Preserve public release metadata
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: technology-versions
+          path: ${{ runner.temp }}/technology/
+          retention-days: 30
+          if-no-files-found: error
